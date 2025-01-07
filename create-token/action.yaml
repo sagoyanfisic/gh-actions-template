@@ -1,0 +1,24 @@
+name: Create GitHub App Token
+description: Creates an installation access token for GitHub App
+
+inputs:
+  app-id:
+    description: GitHub App ID
+    required: true
+  private-key:
+    description: GitHub App RSA private key
+    required: true
+
+outputs:
+  token:
+    description: Installation access token
+  token_id:
+    description: Token ID for revocation
+  expires_at:
+    description: Token expiration timestamp
+  permissions:
+    description: Token permissions JSON string
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
