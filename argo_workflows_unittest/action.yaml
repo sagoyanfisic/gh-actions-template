@@ -1,0 +1,53 @@
+name: 'Submit Argo Workflow'
+description: 'Envía un workflow a Argo Workflows mediante su API'
+author: 'ZeBrands DevOps'
+
+branding:
+  icon: 'play-circle'
+  color: 'blue'
+
+inputs:
+  argo-url:
+    description: 'URL de la instancia de Argo Workflows'
+    required: true
+    default: 'https://argo-workflows-develop-erpnext.zebrands.mx'
+  auth-token:
+    description: 'Token de autenticación para Argo Workflows'
+    required: true
+  namespace:
+    description: 'Namespace de Kubernetes'
+    required: true
+    default: 'argo-workflows'
+  resource-kind:
+    description: 'Tipo de recurso a enviar'
+    required: true
+    default: 'WorkflowTemplate'
+  resource-name:
+    description: 'Nombre del template de workflow'
+    required: true
+  entry-point:
+    description: 'Punto de entrada para el workflow'
+    required: true
+    default: 'run-unit-tests'
+  repository:
+    description: 'Nombre del repositorio'
+    required: true
+  branch:
+    description: 'Nombre de la rama'
+    required: true
+    default: 'develop'
+  head-sha:
+    description: 'SHA del commit'
+    required: true
+
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+
+outputs:
+  response:
+    description: 'Respuesta completa de la API de Argo Workflows'
+  workflow_name:
+    description: 'Nombre del workflow generado'
+  status:
+    description: 'Código de estado HTTP de la respuesta de la API'
